@@ -1,9 +1,12 @@
 package tw.com.shiaoshia.ex2018011201;
 
+import android.net.http.SslError;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             Log.d("NET",a.district + "," + a.address);
                         }
+
 
 
 //                        try {
