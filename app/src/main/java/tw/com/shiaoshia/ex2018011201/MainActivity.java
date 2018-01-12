@@ -23,20 +23,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void click01(View v) {
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        StringRequest request = new StringRequest("http://data.ntpc.gov.tw/od/data/api/BF90FA7E-C358-4CDA-B579-B6C84ADC96A1?$format=json",
+    public void click01(View v)
+    {
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        final StringRequest request = new StringRequest("http://data.ntpc.gov.tw/od/data/api/BF90FA7E-C358-4CDA-B579-B6C84ADC96A1?$format=json",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("NET",response);
-
+                        Log.d("NET", response);
                         try {
                             JSONArray array = new JSONArray(response);
-                            JSONObject obj = array.getJSONObject(0);
-                            String str = obj.getString("district");
-                            Log.d("NET",response);
-
+                            int i;
+                            for (i=0;i<array.length();i++)
+                            {
+                                JSONObject obj = array.getJSONObject(i);
+                                String str = obj.getString("district");
+                                Log.d("NET", str);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        requestQueue.add(request);
-        requestQueue.start();
+        queue.add(request);
+        queue.start();
     }
 }
